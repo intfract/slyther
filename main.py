@@ -8,10 +8,14 @@ dirs = {
   "py": "snakes",
 }
 
+def interpret(string: str):
+  print(string)
+
 with open(f"{dirs['html']}/layout.html", "r+") as file:
   data = file.read()
   print(data)
   html = data.replace('\n', '')
   print(html)
-  print(re.findall(r"{.[^{}]+}", data, re.DOTALL))
-  
+  snippets = re.findall(r"{.[^{}]+}", data, re.DOTALL)
+  for i, snippet in enumerate(snippets):
+    interpret(snippet)
